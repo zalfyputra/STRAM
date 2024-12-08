@@ -20,7 +20,7 @@ const Logs: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isOnline, setIsOnline] = useState<boolean>(false);
 
-  const OFFLINE_TIMEOUT = 10000; // 10 seconds timeout
+  const OFFLINE_TIMEOUT = 5000; // 5 seconds timeout
   let offlineTimer: NodeJS.Timeout;
 
   useEffect(() => {
@@ -62,7 +62,15 @@ const Logs: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto p-6 text-center">
+            <h1 className="text-2xl font-semibold text-gray-700 mb-4">Vehicle Data Readings</h1>
+            <div className="mb-6">
+                {isOnline ? (
+                    <p className="text-green-500">Data is being received successfully.</p>
+                ) : (
+                    <p className="text-red-500">No data is being received.</p>
+                )}
+            </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-300">
                     <thead>

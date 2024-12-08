@@ -120,16 +120,16 @@ const HomePage: React.FC = () => {
     { id: 2, value: stats.totalMotorcycles, label: "Total Motorcycles" },
     { id: 3, value: stats.totalBuses, label: "Total Buses" },
     { id: 4, value: stats.totalTrucks, label: "Total Trucks" },
-    { id: 5, value: stats.totalFrames, label: "Total Frames" },
-    { id: 6, value: stats.averageSpeeds.car, label: "Average Speed (Cars)", isSpeed: true },
-    { id: 7, value: stats.averageSpeeds.motorcycle, label: "Average Speed (Motorcycles)", isSpeed: true },
-    { id: 8, value: stats.averageSpeeds.bus, label: "Average Speed (Buses)", isSpeed: true },
-    { id: 9, value: stats.averageSpeeds.truck, label: "Average Speed (Trucks)", isSpeed: true },
+    { id: 5, value: stats.totalFrames, label: "Total Frames Detected" },
+    { id: 6, value: stats.averageSpeeds.car, label: "Average Car Speed (km/h)", isSpeed: true },
+    { id: 7, value: stats.averageSpeeds.motorcycle, label: "Average Motorcycle Speed (km/h)", isSpeed: true },
+    { id: 8, value: stats.averageSpeeds.bus, label: "Average Bus Speed (km/h)", isSpeed: true },
+    { id: 9, value: stats.averageSpeeds.truck, label: "Average Truck Speed (km/h)", isSpeed: true },
   ];
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center py-10">
-      <h2 className="text-2xl font-semibold text-gray-700 mb-6">Statistics</h2>
+      <h2 className="text-2xl font-semibold text-gray-700 mb-6">Welcome to STRAM</h2>
       <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((item) => (
@@ -138,7 +138,7 @@ const HomePage: React.FC = () => {
               className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center"
             >
               <CountUp
-                start={0}
+                start={item.value}
                 end={item.value}
                 duration={2}
                 separator=","
