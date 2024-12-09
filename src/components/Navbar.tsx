@@ -4,7 +4,7 @@ import user from '../assets/yellow-jacket.png'
 
 const navigation = [
   { name: 'Home', href: '/', current: false },
-  { name: 'Stats', href: '/stats', current: false },
+  { name: 'Stats', href: 'https://colab.research.google.com/drive/1LtVfVYXQlJ9tCglakGFLQ77tikJtbViQ?usp=sharing', current: false },
   { name: 'Logs', href: '/logs', current: false },
   { name: 'About us', href: '/about-us', current: false },
 ]
