@@ -19,10 +19,32 @@ from ultralytics.yolo.utils.plotting import Annotator, colors, save_one_box
 from deep_sort_pytorch.deep_sort import DeepSort
 from deep_sort_pytorch.utils.parser import get_config
 
+import firebase_admin
+from firebase_admin import credentials, db
+
 deepsort = None
 
 # Define timezone for Indonesia (WIB - UTC+7)
 indonesia_tz = pytz.timezone('Asia/Jakarta')
+
+cred = credentials.Certificate('serviceAccountKey.json')
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://stram-project-default-rtdb.asia-southeast1.firebasedatabase.app'
+})
+
+def log_data_to_firebase(object_type, id, median_speed, timestamp, vehicle_direction):
+    """Log the vehicle data to Firebase Realtime Database."""
+    ref = db.reference('/vehicle_data')
+    data = {
+        'object_type': object_type,
+        'id': id,
+        'median_speed': median_speed,
+        'timestamp': timestamp,
+        'vehicle_direction': vehicle_direction
+    }
+    
+    ref.push(data)
+    print(f"Data logged to Firebase: {data}")
 
 def init_tracker():
     global deepsort
@@ -283,6 +305,7 @@ def predict(cfg):
     cfg.source = cfg.source if cfg.source is not None else ROOT / "assets"
     predictor = DetectionPredictor(cfg)
     predictor()
+
 
 if __name__ == "__main__":
     predict()
