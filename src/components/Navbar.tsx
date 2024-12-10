@@ -4,9 +4,9 @@ import user from '../assets/yellow-jacket.png'
 
 const navigation = [
   { name: 'Home', href: '/', current: false },
-  { name: 'Stats', href: '#', current: false },
+  { name: 'Stats', href: 'stats', current: false },
   { name: 'Logs', href: '/logs', current: false },
-  { name: 'About us', href: '#', current: false },
+  { name: 'About us', href: 'https://drive.google.com/file/d/1VfcAcOW_sZN30oO4qRXPEp7-MSJGbA2w/view?usp=sharing', current: false, target: '_blank' },
 ]
 
 function classNames(...classes: string[]) {
@@ -37,7 +37,8 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    target={item.target || '_self'}
+                    rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                     className={classNames(
                       item.current ? 'bg-[#191919] text-white' : 'text-gray-300 hover:bg-[#191919] hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
